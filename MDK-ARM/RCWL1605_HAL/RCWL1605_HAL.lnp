@@ -1,0 +1,27 @@
+--cpu Cortex-M3
+"rcwl1605_hal\startup_stm32f103xb.o"
+"rcwl1605_hal\main.o"
+"rcwl1605_hal\gpio.o"
+"rcwl1605_hal\tim.o"
+"rcwl1605_hal\stm32f1xx_it.o"
+"rcwl1605_hal\stm32f1xx_hal_msp.o"
+"rcwl1605_hal\stm32f1xx_hal_timebase_tim.o"
+"rcwl1605_hal\oled_driver.o"
+"rcwl1605_hal\stm32f1xx_hal_gpio_ex.o"
+"rcwl1605_hal\stm32f1xx_hal_tim.o"
+"rcwl1605_hal\stm32f1xx_hal_tim_ex.o"
+"rcwl1605_hal\stm32f1xx_hal.o"
+"rcwl1605_hal\stm32f1xx_hal_rcc.o"
+"rcwl1605_hal\stm32f1xx_hal_rcc_ex.o"
+"rcwl1605_hal\stm32f1xx_hal_gpio.o"
+"rcwl1605_hal\stm32f1xx_hal_dma.o"
+"rcwl1605_hal\stm32f1xx_hal_cortex.o"
+"rcwl1605_hal\stm32f1xx_hal_pwr.o"
+"rcwl1605_hal\stm32f1xx_hal_flash.o"
+"rcwl1605_hal\stm32f1xx_hal_flash_ex.o"
+"rcwl1605_hal\stm32f1xx_hal_exti.o"
+"rcwl1605_hal\system_stm32f1xx.o"
+--strict --scatter "RCWL1605_HAL\RCWL1605_HAL.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "RCWL1605_HAL.map" -o RCWL1605_HAL\RCWL1605_HAL.axf
