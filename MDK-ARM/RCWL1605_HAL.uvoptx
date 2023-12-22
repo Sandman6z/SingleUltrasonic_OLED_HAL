@@ -287,7 +287,7 @@
   </Group>
 
   <Group>
-    <GroupName>Driver/BSP</GroupName>
+    <GroupName>Drivers/BSP</GroupName>
     <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
@@ -296,10 +296,10 @@
       <GroupNumber>3</GroupNumber>
       <FileNumber>8</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\Drivers\BSP\oled_driver.c</PathWithFileName>
+      <PathWithFileName>..\Drivers\BSP\Src\oled_driver.c</PathWithFileName>
       <FilenameWithoutPath>oled_driver.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>

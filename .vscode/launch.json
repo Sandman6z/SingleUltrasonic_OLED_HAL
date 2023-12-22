@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Bitch/Desktop/RCWL1605_HAL/Drivers/BSP",
-      "program": "c:/Users/Bitch/Desktop/RCWL1605_HAL/Drivers/BSP/build/Debug/outDebug",
+      "cwd": "c:/Users/Bitch/Desktop/RCWL1605_HAL/Core/Src",
+      "program": "c:/Users/Bitch/Desktop/RCWL1605_HAL/Core/Src/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

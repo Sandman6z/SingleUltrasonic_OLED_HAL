@@ -42,8 +42,6 @@
 #define TX_L HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, GPIO_PIN_RESET)
 #define TX_H HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, GPIO_PIN_SET)
 #define RX_IN HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_11)
-
-#define GPIO_EXEC_DELAY_us 8
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -120,7 +118,7 @@ void py_f2s4printf(char *stra, float x, uint8_t flen)
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  float fd= 0.0;
+  float fd = 0.0;
 
   char fchar[32];
   /* USER CODE END 1 */
@@ -153,10 +151,10 @@ int main(void)
   OLED_Init();
 
   OLED_Clear();
-  OLED_ShowString(0,0,"Ultrosound",12);
-  OLED_ShowString(0,1,"Distance",12);
-  OLED_ShowString(0,2,"Test",12);
-  OLED_ShowString(0,3,"Module",12);
+  OLED_ShowString(0, 0, "Ultrosound", 12);
+  OLED_ShowString(0, 1, "Distance", 12);
+  OLED_ShowString(0, 2, "Test", 12);
+  OLED_ShowString(0, 3, "Module", 12);
 
   HAL_TIM_Base_Start(&htim1);
   /* USER CODE END 2 */
@@ -165,27 +163,29 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-     //Sending trigger signal
-	    TX_H;
-	    PY_Delay_us_t(12-GPIO_EXEC_DELAY_us);
-	    TX_L;
+    // Sending trigger signal
+    TX_H;
+    PY_Delay_us_t(12 - GPIO_EXEC_DELAY_us);
+    TX_L;
 
-        while(RX_IN==0); //Waiting for rising edge
-        __HAL_TIM_SetCounter(&htim1, 0);//Set us counter to 0
-        while(RX_IN!=0); //Waiting for fall edge
-        counter = __HAL_TIM_GetCounter(&htim1);//Get transmission delay in us
+    while (RX_IN == 0)
+      ;                              // Waiting for rising edge
+    __HAL_TIM_SetCounter(&htim1, 0); // Set us counter to 0
+    while (RX_IN != 0)
+      ;                                     // Waiting for fall edge
+    counter = __HAL_TIM_GetCounter(&htim1); // Get transmission delay in us
 
-        OLED_Clear();
-        OLED_ShowString(0, 0, "Distance:", 12);
-        sprintf(mychar, "%d us", counter);
-        OLED_ShowString(0, 1, mychar, 12);
+    OLED_Clear();
+    OLED_ShowString(0, 0, "Distance:", 12);
+    sprintf(mychar, "%d us", counter);
+    OLED_ShowString(0, 1, mychar, 12);
 
-	    fd = counter*342.62/2000; //20 degree Celsius sound speed
-	    py_f2s4printf(fchar, fd, 3);
-	    sprintf(mychar, "%s mm", fchar);
-		OLED_ShowString(0, 2, mychar, 12);
+    fd = counter * 342.62 / 2000; // 20 degree Celsius sound speed
+    py_f2s4printf(fchar, fd, 3);
+    sprintf(mychar, "%s mm", fchar);
+    OLED_ShowString(0, 2, mychar, 12);
 
-	    PY_Delay_us_t(500000);
+    PY_Delay_us_t(500000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
