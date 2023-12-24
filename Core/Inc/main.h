@@ -65,9 +65,9 @@ void Error_Handler(void);
 /* USER CODE BEGIN Private defines */
 #define GPIO_EXEC_DELAY_us 8
 
-#define TX_L    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_RESET)
-#define TX_H    HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9, GPIO_PIN_SET)
-#define RX_IN   HAL_GPIO_ReadPin(GPIOB, GPIO_PIN_8)
+#define TX_L    HAL_GPIO_WritePin(Trig_GPIO_Port, Trig_Pin, GPIO_PIN_RESET)
+#define TX_H    HAL_GPIO_WritePin(Trig_GPIO_Port, Trig_Pin, GPIO_PIN_SET)
+#define RX_IN   HAL_GPIO_ReadPin(Echo_GPIO_Port, Echo_Pin)
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
