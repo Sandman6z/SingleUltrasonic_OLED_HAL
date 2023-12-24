@@ -1,12 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <string.h>
+#include <math.h>
 #include "../Inc/oled_driver.h"
 #include "../Inc/oled_font.h"
 #include "../Inc/bmp.h"
 #include "main.h"
 #include "tim.h"
 #include "gpio.h"
+
+
+
 
 __IO float usDelayBase;
 
@@ -65,9 +70,55 @@ void PY_Delay_us(uint32_t Delay)
 		delayReg++;
 }
 
+void py_f2s4printf(char *stra, float x, uint8_t flen)
+{
+  uint32_t base;
+  int64_t dn;
+  char mc[32];
+
+  base = pow(10, flen);
+  dn = x * base;
+  sprintf(stra, "%d.", (int)(dn / base));
+  dn = abs(dn);
+  if (dn % base == 0)
+  {
+    for (uint8_t j = 1; j <= flen; j++)
+    {
+      stra = strcat(stra, "0");
+    }
+    return;
+  }
+  else
+  {
+    if (flen == 1)
+    {
+      sprintf(mc, "%d", (int)(dn % base));
+      stra = strcat(stra, mc);
+      return;
+    }
+
+    for (uint8_t j = 1; j < flen; j++)
+    {
+      if ((dn % base) < pow(10, j))
+      {
+        for (uint8_t k = 1; k <= (flen - j); k++)
+        {
+          stra = strcat(stra, "0");
+        }
+        sprintf(mc, "%d", (int)(dn % base));
+        stra = strcat(stra, mc);
+        return;
+      }
+    }
+    sprintf(mc, "%d", (int)(dn % base));
+    stra = strcat(stra, mc);
+    return;
+  }
+}
+
 // OLED ACCESS
 // IIC Start
-void IIC_Start()
+void IIC_Start(void)
 {
 	PY_Delay_us_t(us_num);
 	OLED_SCLK_Set();
@@ -78,7 +129,7 @@ void IIC_Start()
 }
 
 // IIC Stop
-void IIC_Stop()
+void IIC_Stop(void)
 {
 	OLED_SCLK_Set();
 	PY_Delay_us_t(us_num);
@@ -90,7 +141,7 @@ void IIC_Stop()
 	PY_Delay_us_t(us_num);
 }
 
-uint8_t IIC_Wait_Ack()
+uint8_t IIC_Wait_Ack(void)
 {
 	uint8_t status = 0;
 

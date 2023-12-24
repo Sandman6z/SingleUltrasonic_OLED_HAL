@@ -1,6 +1,8 @@
 #ifndef __OLED_DRIVER_H__
 #define __OLED_DRIVER_H__
 
+#include <stdint.h>
+
 #define us_num 25
 
 #define OLED_MODE   0
@@ -27,9 +29,10 @@ void PY_usDelayTest(void);
 void PY_Delay_us_t(uint32_t Delay);
 void PY_usDelayOptimize(void);
 void PY_Delay_us(uint32_t Delay);
-void IIC_Start();
-void IIC_Stop();
-uint8_t IIC_Wait_Ack();
+void py_f2s4printf(char *stra, float x, uint8_t flen);
+void IIC_Start(void);
+void IIC_Stop(void);
+uint8_t IIC_Wait_Ack(void);
 void Write_IIC_Byte(unsigned char IIC_Byte);
 void Write_IIC_Command(unsigned char IIC_Command);
 void Write_IIC_Data(unsigned char IIC_Data);
